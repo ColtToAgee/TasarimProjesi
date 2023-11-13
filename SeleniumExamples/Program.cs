@@ -13,7 +13,8 @@ namespace SeleniumExamples
         static void Main(string[] args)
         {
             IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.youtube.com/");
+            driver.Navigate().GoToUrl("https://uludag.edu.tr/bm/konu/view?id=2219&title=akademik-kadro");
+            IReadOnlyCollection<IWebElement> element = driver.FindElements(By.ClassName("td"));
         }
     }
 }
