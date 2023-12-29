@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SeleniumEntity.Models;
+using SeleniumEntity.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +20,20 @@ namespace SeleniumService.Services
             var connString = "data source=DESKTOP-3TJ90CS; initial catalog=SeleniumDb; integrated security=true;";
             conn = new SqlConnection(connString);
             conn.Open();
+        }
+
+        public List<T> Query<T>(string sql) where T : BaseViewModel
+        {
+            try
+            {
+                List<T> result = conn.Query<T>(sql).ToList();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                LogService.CreateErrorLog(ex);
+                return new List<T>();
+            }
         }
 
         /// <summary>
@@ -113,21 +128,18 @@ namespace SeleniumService.Services
                         var sqlPropName = $"{prop.Name}";
                         var propType = prop.PropertyType.Name;
                         var newValue = prop.GetValue(entity);
-                        var oldValue = prop.GetValue(dbEntity);
                         if (propType == "Int" || propType == "Boolean" || propType == "Double" || propType == "Float" || propType == "Byte")
                         {
 
                             sqlNewEntity += $" {sqlPropName}={newValue},";
-                            sqlOldEntity += $" {sqlPropName}={oldValue} and";
                         }
                         else
                         {
                             sqlNewEntity += $" {sqlPropName}='{newValue}',";
-                            sqlOldEntity += $" {sqlPropName}='{oldValue}' and";
                         }
                     }
                     sqlNewEntity = sqlNewEntity.Substring(0, sqlNewEntity.Length - 1);
-                    sqlOldEntity = Extensions.WordTrimEnd(sqlOldEntity, "and");
+                    sqlOldEntity += " Id=" + propList.FirstOrDefault(a=>a.Name=="Id").GetValue(dbEntity);
                     sql = sql + sqlNewEntity + sqlOldEntity;
                     conn.Execute(sql);
                 }

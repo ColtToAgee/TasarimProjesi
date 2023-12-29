@@ -5,6 +5,7 @@ using SeleniumService.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,48 +15,73 @@ namespace DenemeSelenium
     {
         static void Main(string[] args)
         {
-            getUsers();
+            getDoctorImages();
+            //GetDoctors();
         }
-        public static void getUsers()
+        public static void GetDoctors()
         {
             IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://uludag.edu.tr/bm/konu/view?id=2219&title=akademik-kadro");
-            IReadOnlyCollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
-            List<UserProfiles> userList = new List<UserProfiles>();
+            
             using (var db = new DbService())
             {
-                foreach (var element in elements)
+                var urlList = db.GetList<WebUrls>();
+                foreach (var url in urlList)
                 {
-                    var newProfile = new UserProfiles();
-                    var text = element.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
-                    text.All(item =>
+                    driver.Navigate().GoToUrl(url.UrlPath);
+                    var doctorName= driver.FindElement(By.CssSelector(".text.detail")).FindElement(By.TagName("h1")).Text.Split(new[] { "\r\n" }, StringSplitOptions.None)[1];
+                    var doctorPoliclinic = driver.FindElement(By.CssSelector(".doctor.units.main.top")).Text;
+                    var doctorEmail = driver.FindElement(By.CssSelector(".doctor.email")).Text;
+                    var doctorTitle = driver.FindElement(By.CssSelector(".text.detail")).FindElement(By.TagName("h1")).FindElement(By.TagName("span")).Text;
+                    var doctorPoliclinicId = db.FirstOrDefault<Policlinics>($"{nameof(Policlinics.PoliclinicName)}='{doctorPoliclinic}'")==null?0: db.FirstOrDefault<Policlinics>($"{nameof(Policlinics.PoliclinicName)}='{doctorPoliclinic}'").Id;
+                    var doctorTitleId = db.FirstOrDefault<Titles>($"{nameof(Titles.TitleName)}='{doctorTitle}'").Id;
+                    var newDoctor = new DoctorProfiles()
                     {
-                        var data = item.ToLower().Trim();
-                        if (data.StartsWith("prof") || data.StartsWith("doç") || data.StartsWith("dr") || data.StartsWith("araş"))
-                            newProfile.FullName = data;
-                        else if (data.StartsWith("tel:"))
-                            newProfile.TelephoneNumber = data.Split(new[] { "tel:" }, StringSplitOptions.None)[1];
-                        else if (data.StartsWith("e-posta"))
-                            newProfile.Email = data.Split(new[] { "e-posta:" }, StringSplitOptions.None)[1];
-                        else if (data.StartsWith("adres"))
-                            newProfile.Adress = data.Split(new[] { "adres:" }, StringSplitOptions.None)[1];
-                        else if (data.StartsWith("avesis"))
-                            newProfile.AvesisLink = data.Split(new[] { "avesis:" }, StringSplitOptions.None)[1];
-                        return true;
-                    });
-                    var user = db.FirstOrDefault<UserProfiles>($"{nameof(UserProfiles.FullName)}='{newProfile.FullName}'");
-                    if (user != null)
+                        DoctorName = doctorName,
+                        DoctorEmail = doctorEmail,
+                        DoctorPoliclinic = doctorPoliclinicId,
+                        DoctorTitle = doctorTitleId,
+                        DoctorHospital = 1,
+                        RowStateId = 1,
+                    };
+                    var tempDoctor = db.FirstOrDefault<DoctorProfiles>($"{nameof(DoctorProfiles.DoctorName)}='{doctorName}'");
+                    if (tempDoctor == null)
                     {
-                        user.TelephoneNumber = newProfile.TelephoneNumber;
-                        user.Email=newProfile.Email;
-                        user.Adress = newProfile.Adress;
-                        user.AvesisLink =newProfile.AvesisLink;
-                        db.AddOrUpdateEntity(user);
+                        db.AddOrUpdateEntity(newDoctor);
                     }
                     else
-                        db.AddOrUpdateEntity(newProfile);
+                    {
+                        tempDoctor.DoctorName = doctorName;
+                        tempDoctor.DoctorEmail=doctorEmail;
+                        tempDoctor.DoctorPoliclinic=doctorPoliclinicId;
+                        tempDoctor.DoctorTitle = doctorTitleId;
+                        db.AddOrUpdateEntity(tempDoctor);
+                    }
                 }
              }
+        }
+        public static void getDoctorImages()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.acibadem.com.tr/doktorlar/");
+            using (var db = new DbService())
+            {
+                var doctorDbList = db.GetList<DoctorProfiles>();
+                var doctorList = driver.FindElements(By.ClassName("doctor-lazy-load-img-cancelled"));
+                foreach(var doctor in doctorList)
+                {
+                    var image = doctor.GetDomAttribute("src");
+                    var name = doctor.GetDomAttribute("alt");
+                    if (image != null && name !=null)
+                    {
+                        var selectedDoctor = doctorDbList.FirstOrDefault(a => name.Contains(a.DoctorName));
+                        if (selectedDoctor != null)
+                        {
+                            selectedDoctor.DoctorImageLink = "https://www.acibadem.com.tr" + image;
+                            db.AddOrUpdateEntity<DoctorProfiles>(selectedDoctor);
+                        }
+                    }
+                }
+            }
         }
     }
 }
