@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumService", "Selenium
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumEntity", "SeleniumEntity\SeleniumEntity.csproj", "{F9156FB8-EC96-4380-A4F2-6F442EA1469F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasarimProjeWeb", "TasarimProjeWeb\TasarimProjeWeb.csproj", "{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F9156FB8-EC96-4380-A4F2-6F442EA1469F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9156FB8-EC96-4380-A4F2-6F442EA1469F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9156FB8-EC96-4380-A4F2-6F442EA1469F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

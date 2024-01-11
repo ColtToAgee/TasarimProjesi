@@ -16,7 +16,7 @@ namespace DenemeSelenium
         static void Main(string[] args)
         {
             getDoctorImages();
-            //GetDoctors();
+            GetDoctors();
         }
         public static void GetDoctors()
         {

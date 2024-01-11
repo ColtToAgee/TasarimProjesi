@@ -14,8 +14,9 @@ namespace SeleniumEntity.ViewModels
         public string DoctorTitleName { get; set; }
         public int DoctorHospital { get; set; }
         public string DoctorHospitalName { get; set; }
+        public string DoctorImageLink { get; set; }
         public int DoctorPoliclinic { get; set; }
         public string DoctorPoliclinicName { get; set; }
-        public string DoctorImageLink { get; set; }
+
     }
 }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SeleniumEntity.ViewModels
 {
-    public class BaseViewModel
+    public class HospitalsViewModel: BaseViewModel
     {
-        public int Id { get; set; }
-        public int? RowStateId { get; set; }
+        public string HospitalName { get; set; }
     }
 }
