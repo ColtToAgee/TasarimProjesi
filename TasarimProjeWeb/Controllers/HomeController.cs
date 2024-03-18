@@ -18,7 +18,7 @@ namespace TasarimProjeWeb.Controllers
         }
 
         [HttpGet]
-        public List<DoctorProfilesViewModel> GetDoctors()
+        public JsonResult GetDoctors()
         {
             var userList = new List<DoctorProfilesViewModel>();
             using (var db = new DbService())
@@ -49,7 +49,7 @@ namespace TasarimProjeWeb.Controllers
 
             var userListData = JsonConvert.SerializeObject(userList);
 
-            return userList;
+            return Json(userListData,JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
