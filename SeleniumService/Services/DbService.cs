@@ -82,11 +82,13 @@ namespace SeleniumService.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
-        public void AddOrUpdateEntity<T>(T entity) where T : BaseEntity
+        public void AddOrUpdateEntity<T>(T entity,string where = "") where T : BaseEntity
         {
             try
             {
                 var dbEntity = FirstOrDefault<T>($"{nameof(entity.Id)} = {entity.Id}");
+                if (!string.IsNullOrEmpty(where))
+                    dbEntity = FirstOrDefault<T>(where);
                 if (dbEntity == null)
                 {
                     var sql = "INSERT INTO";

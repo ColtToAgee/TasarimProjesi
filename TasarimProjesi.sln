@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWeb", "SeleniumWebTest\SeleniumWeb.csproj", "{D9269E90-BEE6-431A-ABCD-C7789377FACF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWorker", "DenemeSelenium\SeleniumWorker.csproj", "{FBF5E310-054B-4037-9F44-6940309A3C51}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumService", "SeleniumService\SeleniumService.csproj", "{B89017D3-78EE-43FF-8051-4052242ECC85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumEntity", "SeleniumEntity\SeleniumEntity.csproj", "{F9156FB8-EC96-4380-A4F2-6F442EA1469F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasarimProjeWeb", "TasarimProjeWeb\TasarimProjeWeb.csproj", "{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcibademHospitalWorker", "AcibademHospitalWorker\AcibademHospitalWorker.csproj", "{139CDA5E-B0F9-4E41-B45F-C1D76070920B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicanaHospitalWorker", "MedicanaHospitalWorker\MedicanaHospitalWorker.csproj", "{85BB15D8-9F59-489F-AE83-FE2C2C4EA2E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HayatHospitalWorker", "HayatHospitalWorker\HayatHospitalWorker.csproj", "{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D9269E90-BEE6-431A-ABCD-C7789377FACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9269E90-BEE6-431A-ABCD-C7789377FACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9269E90-BEE6-431A-ABCD-C7789377FACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9269E90-BEE6-431A-ABCD-C7789377FACF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBF5E310-054B-4037-9F44-6940309A3C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBF5E310-054B-4037-9F44-6940309A3C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBF5E310-054B-4037-9F44-6940309A3C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBF5E310-054B-4037-9F44-6940309A3C51}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B89017D3-78EE-43FF-8051-4052242ECC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B89017D3-78EE-43FF-8051-4052242ECC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89017D3-78EE-43FF-8051-4052242ECC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +33,18 @@ Global
 		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DD5A9C2-9128-4EBE-BAA1-1C227B0EB74D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139CDA5E-B0F9-4E41-B45F-C1D76070920B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139CDA5E-B0F9-4E41-B45F-C1D76070920B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139CDA5E-B0F9-4E41-B45F-C1D76070920B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139CDA5E-B0F9-4E41-B45F-C1D76070920B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BB15D8-9F59-489F-AE83-FE2C2C4EA2E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BB15D8-9F59-489F-AE83-FE2C2C4EA2E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BB15D8-9F59-489F-AE83-FE2C2C4EA2E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BB15D8-9F59-489F-AE83-FE2C2C4EA2E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

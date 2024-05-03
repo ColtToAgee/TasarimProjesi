@@ -4,9 +4,11 @@ using SeleniumEntity.ViewModels;
 using SeleniumService.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace TasarimProjeWeb.Controllers
 {
@@ -109,7 +111,7 @@ namespace TasarimProjeWeb.Controllers
             return Json(hospitalListData, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult GetDoctorsWithFilter(int hospitalId,int policlinicId, int titleId)
         {
             var doctorList = new List<DoctorProfilesViewModel>();
@@ -144,6 +146,18 @@ namespace TasarimProjeWeb.Controllers
             var doctorListData = JsonConvert.SerializeObject(doctorList);
 
             return Json(doctorListData, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public void RunConsoleApp()
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "cmd";
+            process.StartInfo.FileName = "cmd";
+            process.StartInfo.WorkingDirectory = @"C:\Users\Cagat\source\repos\TasarimProjesi\DenemeSelenium\bin\Debug";
+
+            process.StartInfo.Arguments = "/c \"" + "DenemeSelenium.exe" + "\"";
+            process.Start();
         }
     }
 }

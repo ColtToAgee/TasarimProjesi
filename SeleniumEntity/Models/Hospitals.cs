@@ -10,6 +10,6 @@ namespace SeleniumEntity.Models
     {
         public string HospitalName { get; set; }
 
-        public string HospitalCity { get; set; }
+        public string HospitalAddress { get; set; }
     }
 }
