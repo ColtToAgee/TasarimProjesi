@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicanaHospitalWorker", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HayatHospitalWorker", "HayatHospitalWorker\HayatHospitalWorker.csproj", "{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitirmeWebApi", "BitirmeWebApi\BitirmeWebApi.csproj", "{66F095BD-75AF-42D4-8833-CA9BD828BC13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6B5AB83-F726-4998-9FE6-8699A69C8DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66F095BD-75AF-42D4-8833-CA9BD828BC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66F095BD-75AF-42D4-8833-CA9BD828BC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66F095BD-75AF-42D4-8833-CA9BD828BC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66F095BD-75AF-42D4-8833-CA9BD828BC13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

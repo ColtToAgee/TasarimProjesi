@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
+using System.Web.Cors;
 
 namespace TasarimProjeWeb.Controllers
 {
@@ -111,9 +112,10 @@ namespace TasarimProjeWeb.Controllers
             return Json(hospitalListData, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetDoctorsWithFilter(int hospitalId,int policlinicId, int titleId)
         {
+
             var doctorList = new List<DoctorProfilesViewModel>();
             using (var db = new DbService())
             {
